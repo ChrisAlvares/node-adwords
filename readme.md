@@ -6,11 +6,12 @@ something doesn't stand out.
 
 This API is the first feature complete Adwords Api for Node.
 
-You will Need an Adwords developer token. Apply [here](https://developers.google.com/adwords/api/docs/guides/signup)
+You will need an Adwords developer token. Apply [here](https://developers.google.com/adwords/api/docs/guides/signup)
 
 ## Getting Started
 
 The main adwords user object follows the [auth] (https://github.com/googleads/googleads-php-lib/blob/master/src/Google/Api/Ads/AdWords/auth.ini) parameters
+of the PHP library.
 
 ```js
 var AdwordsUser = require('node-adwords').AdwordsUser;
@@ -27,6 +28,11 @@ var user = new AdwordsUser({
 
 ## Usage
 
+The following shows how to retrieve a list of campaigns. The biggest difference
+from the PHP library is the node library does not have special objects for
+`Selector` and `Page` and other entity types. It uses standard object notation.
+
+
 ```js
 var AdwordsUser = require('node-adwords').AdwordsUser;
 var AdwordsConstants = require('node-adwords').AdwordsConstants;
@@ -41,16 +47,16 @@ var selector = {
     paging: {startIndex: 0, numberResults: AdwordsConstants.RECOMMENDED_PAGE_SIZE}
 }
 
-campaignService.get(selector, (error, campaigns) => {
-    console.log(error, campaigns);
+campaignService.get(selector, (error, result) => {
+    console.log(error, result);
 })
 
 ```
 
 ## Authentication
-We use the [official google api client](https://github.com/google/google-api-nodejs-client)
+Internally, the node-adwords sdk use the [official google api client](https://github.com/google/google-api-nodejs-client)
 for authenticating users. Using the `https://www.googleapis.com/auth/adwords` scope.
-The node-adwords api has some helper methods for you to authenticate if you do not
+The node-adwords sdk has some helper methods for you to authenticate if you do not
 need additional scopes.
 
 ```js
@@ -81,6 +87,10 @@ These should be placed as environmental variables:
 
 ```
 $ ADWORDS_API_TEST_DEVTOKEN=123453152342352352
-$ ADWORDS_API_TEST_REFRESHTOKEN=a45ikg94k3994kg94kg4k
+$ ADWORDS_API_TEST_REFRESHTOKEN=INSERT_OAUTH2_REFRESH_TOKEN_HERE
+$ ADWORDS_API_TEST_CLIENT_ID=INSERT_OAUTH2_CLIENT_ID_HERE
+$ ADWORDS_API_TEST_CLIENT_SECRET=INSERT_OAUTH2_CLIENT_SECRET_HERE
+$ ADWORDS_API_TEST_CLIENT_CUSTOMER_ID=INSERT_CLIENT_CUSTOMER_ID_HERE
+
 $ npm test
 ```
