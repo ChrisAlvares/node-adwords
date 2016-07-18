@@ -1,6 +1,6 @@
 # Node Adwords Api
 
-This is an unofficial Adwords API for NodeJS > 3.0. This Api mirrors the official
+This is an unofficial Adwords sdk for NodeJS > 3.0. This Api mirrors the official
 PHP api pretty well so you can always look at that documentation if
 something doesn't stand out.
 
