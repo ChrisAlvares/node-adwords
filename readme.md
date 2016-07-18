@@ -47,7 +47,7 @@ var selector = {
     paging: {startIndex: 0, numberResults: AdwordsConstants.RECOMMENDED_PAGE_SIZE}
 }
 
-campaignService.get(selector, (error, result) => {
+campaignService.get({serviceSelector: selector}, (error, result) => {
     console.log(error, result);
 })
 

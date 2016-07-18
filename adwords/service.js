@@ -24,7 +24,7 @@ class AdwordsService {
 
     /**
      * Attaches a function to the current service object
-     * This is sort of like using the "Proxy" class, which I wanted to use,
+     * This is sort of like using the "Proxy.create" method
      * but have to wait till it is finalized in ES6
      * @access protected
      * @param methods {array} an array of string method names
@@ -69,7 +69,7 @@ class AdwordsService {
             this.client.setSecurity(
                 new soap.BearerSecurity(this.credentials.access_token)
             );
-            
+
             this.client[method](payload, this.parseResponse((error, response) => {
                 if (error
                     && shouldRetry
