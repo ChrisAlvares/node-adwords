@@ -4,6 +4,8 @@ This is an unofficial Adwords API for NodeJS > 3.0. This Api mirrors the officia
 PHP api pretty well so you can always look at that documentation if
 something doesn't stand out.
 
+This API is the first feature complete Adwords Api for Node.
+
 You will Need an Adwords developer token. Apply [here](https://developers.google.com/adwords/api/docs/guides/signup)
 
 ## Getting Started
