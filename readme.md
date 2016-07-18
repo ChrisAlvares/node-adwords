@@ -57,7 +57,7 @@ campaignService.get({serviceSelector: selector}, (error, result) => {
 
 The Adwords SDK also has a reporting endpoint, which is separate from
 the `user.getService` endpoint since the reporting api is not part of the
-regular sdk.
+regular api.
 
 ```js
 const AdwordsReport = require('node-adwords').AdwordsReport;
