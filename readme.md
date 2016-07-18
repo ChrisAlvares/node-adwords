@@ -10,7 +10,7 @@ You will need an Adwords developer token. Apply [here](https://developers.google
 
 ## Getting Started
 
-The main adwords user object follows the [auth] (https://github.com/googleads/googleads-php-lib/blob/master/src/Google/Api/Ads/AdWords/auth.ini) parameters
+The main adwords user object follows the [auth](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/Api/Ads/AdWords/auth.ini) parameters
 of the PHP library.
 
 ```js
@@ -121,3 +121,8 @@ $ ADWORDS_API_TEST_CLIENT_CUSTOMER_ID=INSERT_CLIENT_CUSTOMER_ID_HERE
 
 $ npm test
 ```
+
+## Credits
+While this is not a fork of
+the [googleads-node-lib library](https://github.com/ErikEvenson/googleads-node-lib/), it
+did help with some debugging while creating this one.
