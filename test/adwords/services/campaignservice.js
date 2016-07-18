@@ -1,8 +1,9 @@
+'use strict';
 /**
  * Tests / Examples for Campaign Service
  */
-var AdwordsUser = require('../../../index').AdwordsUser;
-var AdwordsConstants = require('../../../index').AdwordsConstants;
+const AdwordsUser = require('../../../index').AdwordsUser;
+const AdwordsConstants = require('../../../index').AdwordsConstants;
 
 describe('CampaignService', function() {
 

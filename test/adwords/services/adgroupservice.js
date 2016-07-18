@@ -1,8 +1,9 @@
+'use strict';
 /**
  * Tests / Examples for Adgroup Service
  */
-var AdwordsUser = require('../../../index').AdwordsUser;
-var AdwordsConstants = require('../../../index').AdwordsConstants;
+const AdwordsUser = require('../../../index').AdwordsUser;
+const AdwordsConstants = require('../../../index').AdwordsConstants;
 
 describe('AdgroupService', function() {
 
@@ -15,8 +16,8 @@ describe('AdgroupService', function() {
 
 
     it('should return a result with a list of adgroups', function(done) {
-        var adgroupService = user.getService('AdGroupService', config.version);
-        var selector = {
+        let adgroupService = user.getService('AdGroupService', config.version);
+        let selector = {
             fields: ['Id', 'Name'],
             ordering: [{field: 'Name', sortOrder: 'ASCENDING'}],
             paging: {startIndex: 0, numberResults: AdwordsConstants.RECOMMENDED_PAGE_SIZE}

@@ -6,6 +6,7 @@
 const _ = require('underscore');
 const AdwordsServiceDescriptors = require('../services');
 const AdwordsService = require('./service');
+const AdwordsConstants = require('./constants');
 
 class AdwordsUser {
 
@@ -33,7 +34,7 @@ class AdwordsUser {
      * @return {AdwordsService} An adwords service object to call methods from
      */
     getService(service, adwordsVersion) {
-        adwordsVersion = adwordsVersion || 'v201605';
+        adwordsVersion = adwordsVersion || AdwordsConstants.DEFAULT_ADWORDS_VERSION;
         var serviceDescriptor = AdwordsServiceDescriptors[service];
         if (!serviceDescriptor) {
             throw new Error(

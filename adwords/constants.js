@@ -24,5 +24,11 @@ module.exports = {
      * Determines if there is an oAuth error
      * @var string
      */
-    OAUTH_ERROR: 'AuthenticationError.OAUTH_TOKEN_INVALID'
+    OAUTH_ERROR: 'AuthenticationError.OAUTH_TOKEN_INVALID',
+
+    /**
+     * Gives a default adwords version
+     * @var string
+     */
+    DEFAULT_ADWORDS_VERSION: 'v201605'
 };

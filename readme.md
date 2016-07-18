@@ -14,9 +14,9 @@ The main adwords user object follows the [auth] (https://github.com/googleads/go
 of the PHP library.
 
 ```js
-var AdwordsUser = require('node-adwords').AdwordsUser;
+const AdwordsUser = require('node-adwords').AdwordsUser;
 
-var user = new AdwordsUser({
+let user = new AdwordsUser({
     developerToken: 'INSERT_DEVELOPER_TOKEN_HERE', //your adwords developerToken
     userAgent: 'INSERT_COMPANY_NAME_HERE', //any company name
     clientCustomerId: 'INSERT_CLIENT_CUSTOMER_ID_HERE', //the Adwords Account id (e.g. 123-123-123)
@@ -34,14 +34,14 @@ from the PHP library is the node library does not have special objects for
 
 
 ```js
-var AdwordsUser = require('node-adwords').AdwordsUser;
-var AdwordsConstants = require('node-adwords').AdwordsConstants;
+const AdwordsUser = require('node-adwords').AdwordsUser;
+const AdwordsConstants = require('node-adwords').AdwordsConstants;
 
-var user = new AdwordsUser({...});
-var campaignService = user.getService('CampaignService', 'v201605')
+let user = new AdwordsUser({...});
+let campaignService = user.getService('CampaignService', 'v201605')
 
 //create selector
-var selector = {
+let selector = {
     fields: ['Id', 'Name'],
     ordering: [{field: 'Name', sortOrder: 'ASCENDING'}],
     paging: {startIndex: 0, numberResults: AdwordsConstants.RECOMMENDED_PAGE_SIZE}
@@ -53,6 +53,33 @@ campaignService.get({serviceSelector: selector}, (error, result) => {
 
 ```
 
+## Reporting
+
+The Adwords SDK also has a reporting endpoint, which is separate from
+the `user.getService` endpoint since the reporting api is not part of the
+regular sdk.
+
+```js
+const AdwordsReport = require('node-adwords').AdwordsReport;
+
+let report = new AdwordsReport({/** same config as AdwordsUser above */});
+report.getReport('v201606', {
+    reportName: 'Custom Adgroup Performance Report',
+    reportType: 'CAMPAIGN_PERFORMANCE_REPORT',
+    fields: ['CampaignId', 'Impressions', 'Clicks', 'Cost'],
+    filters: [
+        {field: 'CampaignStatus', operator: 'IN', values: ['ENABLED', 'PAUSED']}
+    ],
+    startDate: new Date("07/10/2016"),
+    endDate: new Date(),
+    format: 'CSV' //defaults to CSV
+}, (error, report) => {
+    console.log(error, report);
+});
+```
+
+
+
 ## Authentication
 Internally, the node-adwords sdk use the [official google api client](https://github.com/google/google-api-nodejs-client)
 for authenticating users. Using the `https://www.googleapis.com/auth/adwords` scope.
@@ -60,9 +87,9 @@ The node-adwords sdk has some helper methods for you to authenticate if you do n
 need additional scopes.
 
 ```js
-var AdwordsUser = require('node-adwords').AdwordsAuth;
+const AdwordsUser = require('node-adwords').AdwordsAuth;
 
-var auth = new AdwordsAuth({
+let auth = new AdwordsAuth({
     client_id: 'INSERT_OAUTH2_CLIENT_ID_HERE', //this is the api console client_id
     client_secret: 'INSERT_OAUTH2_CLIENT_SECRET_HERE'
 }, 'https://myredirecturlhere.com/adwords/auth' /** insert your redirect url here */);

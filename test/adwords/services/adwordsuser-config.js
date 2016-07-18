@@ -1,3 +1,4 @@
+'use strict';
 /**
  * Builds an adwords user, or false if it is unable to get all the required fields
  */
