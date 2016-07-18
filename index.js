@@ -1,3 +1,5 @@
 module.exports = {
-    AdwordsUser: require('./lib/user')
+    AdwordsAuth: require('./adwords/auth'),
+    AdwordsUser: require('./adwords/user'),
+    AdwordsConstants: require('./adwords/constants')
 };
