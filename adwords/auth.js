@@ -25,7 +25,7 @@ class AdwordsAuth {
     generateAuthenticationUrl() {
         return this.oauth2Client.generateAuthUrl({
             access_type: 'offline',
-            scopes: 'https://www.googleapis.com/auth/adwords'
+            scope: 'https://www.googleapis.com/auth/adwords'
         });
     }
 
