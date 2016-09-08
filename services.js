@@ -220,7 +220,6 @@ module.exports = {
 		'xmlns': 'https://adwords.google.com/api/adwords/mcm/{{version}}',
 		'wsdl': 'https://adwords.google.com/api/adwords/mcm/{{version}}/CustomerService?wsdl',
 		'methods': [
-			'get',
 			'getCustomers',
 			'mutate'
 		]
