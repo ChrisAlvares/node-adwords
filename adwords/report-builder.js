@@ -43,9 +43,11 @@ class AdwordsReportBuilder {
      * @param fields {array}
      */
     buildFields(selector, fields) {
-        for (var index in fields) {
-            selector.ele('fields', {}, fields[index]);
-        }
+        let toClass = {}.toString
+
+        for (var index in fields)
+            if (toClass.call(fields[index]) !== "[object Function]")
+                selector.ele('fields', {}, fields[index]);
     }
 
     /**
@@ -67,16 +69,20 @@ class AdwordsReportBuilder {
      * @param filters {array} an array of filters
      */
     buildFilters(selector, filters) {
+        let toClass = {}.toString
         for (var index in filters) {
             var filter = filters[index];
-            var element = selector.ele('predicates');
-            element.ele('field', {}, filter.field);
-            element.ele('operator', {}, filter.operator);
-            if (!(filter.values instanceof Array)) {
-                filter.values = [filter.values]
-            }
-            for (var r in filter.values) {
-                element.ele('values', {}, filter.values[r]);
+            if (toClass.call(filter) !== "[object Function]") {
+                var element = selector.ele('predicates');
+                element.ele('field', {}, filter.field);
+                element.ele('operator', {}, filter.operator);
+                if (!(filter.values instanceof Array)) {
+                    filter.values = [filter.values]
+                }
+                for (var r in filter.values) {
+                    if (toClass.call(filter.values[r]) !== "[object Function]") 
+                        element.ele('values', {}, filter.values[r]);
+                }
             }
         }
     }
