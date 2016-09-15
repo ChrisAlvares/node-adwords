@@ -37,7 +37,7 @@ class AdwordsReport {
 
         apiVersion = apiVersion || AdwordsConstants.DEFAULT_ADWORDS_VERSION;
 
-        this.getHeaders((error, headers) => {
+        this.getHeaders(report.headers, (error, headers) => {
             if (error) {
                 return callback(error);
             }
@@ -64,11 +64,10 @@ class AdwordsReport {
         });
     }
 
-
     /**
      * Gets the headers for the request
      */
-    getHeaders(callback) {
+    getHeaders(reportHeaders, callback) {
         this.getAccessToken((error, accessToken) => {
             if (error) {
                 return callback(error);
@@ -78,6 +77,9 @@ class AdwordsReport {
                 developerToken: this.credentials.developerToken,
                 clientCustomerId: this.credentials.clientCustomerId
             };
+	    for (var customHeader in reportHeaders) {
+                headers[customHeader] = reportHeaders[customHeader];
+            }
             return callback(null, headers);
         });
     }
