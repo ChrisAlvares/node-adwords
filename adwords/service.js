@@ -122,14 +122,19 @@ class AdwordsService {
             clientDetails.methods = _.keys(clientDetails.description[clientDetails.name][clientDetails.port]);
             this.clientDetails = clientDetails;
 
-            this.client.addSoapHeader({
+            var header = {
                 RequestHeader: {
                     developerToken: this.credentials.developerToken,
                     userAgent: this.credentials.userAgent,
-                    clientCustomerId: this.credentials.clientCustomerId,
                     validateOnly: !!this.credentials.validateOnly
                 }
-            },
+            };
+
+            if (this.credentials.clientCustomerId) {
+                header.RequestHeader.clientCustomerId = this.credentials.clientCustomerId;
+            }
+
+            this.client.addSoapHeader(header,
             this.clientDetails.name,
             this.clientDetails.namespace,
             this.serviceDescriptor.xmlns);
