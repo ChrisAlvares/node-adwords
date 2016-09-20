@@ -1,6 +1,6 @@
 {
   "name": "node-adwords",
-  "version": "201607.0",
+  "version": "201607.0.1",
   "description": "An unofficial - feature complete - Adwords sdk for NodeJS",
   "main": "index.js",
   "scripts": {
@@ -22,14 +22,14 @@
   "homepage": "https://github.com/ChrisAlvares/node-adwords#readme",
   "dependencies": {
     "async": "^2.0.0",
-    "googleapis": "^11.0.0",
-    "moment": "^2.14.1",
+    "googleapis": "^13.0.0",
+    "moment": "^2.15.0",
     "request": "^2.73.0",
-    "soap": "^0.16.0",
+    "soap": "^0.17.0",
     "underscore": "^1.8.3",
     "xmlbuilder": "^8.2.2"
   },
   "devDependencies": {
-    "mocha": "^2.5.3"
+    "mocha": "^3.0.2"
   }
 }
