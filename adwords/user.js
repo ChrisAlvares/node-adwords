@@ -30,7 +30,7 @@ class AdwordsUser {
      * Returns an Api Service Endpoint
      * @access public
      * @param service {string} the name of the service to load
-     * @param adwordsversion {string} the adwords version, defaults to 201605
+     * @param adwordsversion {string} the adwords version, defaults to 201607
      * @return {AdwordsService} An adwords service object to call methods from
      */
     getService(service, adwordsVersion) {

@@ -16,7 +16,7 @@ describe('ReportService', function() {
     it('should return a valid report', function(done) {
         let report = new AdwordsReport(config);
 
-        report.getReport('v201605', {
+        report.getReport('v201607', {
             reportName: 'Custom Adgroup Performance Report',
             reportType: 'CAMPAIGN_PERFORMANCE_REPORT',
             fields: ['CampaignId', 'Impressions', 'Clicks', 'Cost'],

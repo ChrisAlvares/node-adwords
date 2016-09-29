@@ -45,7 +45,7 @@ const AdwordsUser = require('node-adwords').AdwordsUser;
 const AdwordsConstants = require('node-adwords').AdwordsConstants;
 
 let user = new AdwordsUser({...});
-let campaignService = user.getService('CampaignService', 'v201605')
+let campaignService = user.getService('CampaignService', 'v201607')
 
 //create selector
 let selector = {
