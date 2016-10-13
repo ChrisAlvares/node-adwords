@@ -262,14 +262,6 @@ module.exports = {
 			'query'
 		]
 	},
-	'ExperimentService': {
-		'xmlns': 'https://adwords.google.com/api/adwords/cm/{{version}}',
-		'wsdl': 'https://adwords.google.com/api/adwords/cm/{{version}}/ExperimentService?wsdl',
-		'methods': [
-			'get',
-			'mutate'
-		]
-	},
 	'FeedItemService': {
 		'xmlns': 'https://adwords.google.com/api/adwords/cm/{{version}}',
 		'wsdl': 'https://adwords.google.com/api/adwords/cm/{{version}}/FeedItemService?wsdl',
@@ -333,6 +325,13 @@ module.exports = {
 			'get',
 			'query',
 			'upload'
+		]
+	},
+	'OfflineCallConversionFeedService': {
+		'xmlns': 'https://adwords.google.com/api/adwords/cm/{{version}}',
+		'wsdl': 'https://adwords.google.com/api/adwords/cm/{{version}}/OfflineCallConversionFeedService?wsdl',
+		'methods': [
+			'mutate'
 		]
 	},
 	'OfflineConversionFeedService': {
