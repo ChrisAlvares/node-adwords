@@ -70,7 +70,7 @@ regular api.
 const AdwordsReport = require('node-adwords').AdwordsReport;
 
 let report = new AdwordsReport({/** same config as AdwordsUser above */});
-report.getReport('v201606', {
+report.getReport('v201609', {
     reportName: 'Custom Adgroup Performance Report',
     reportType: 'CAMPAIGN_PERFORMANCE_REPORT',
     fields: ['CampaignId', 'Impressions', 'Clicks', 'Cost'],
@@ -80,6 +80,20 @@ report.getReport('v201606', {
     startDate: new Date("07/10/2016"),
     endDate: new Date(),
     format: 'CSV' //defaults to CSV
+}, (error, report) => {
+    console.log(error, report);
+});
+```
+
+You can also pass in additional headers in case you need to remove the header rows
+
+```js
+report.getReport('v201609', {
+    ...
+    additionalHeaders: {
+        skipReportHeader: true,
+        skipReportSummary: true
+    }
 }, (error, report) => {
     console.log(error, report);
 });
