@@ -85,7 +85,29 @@ report.getReport('v201606', {
 });
 ```
 
+### Reporting Headers
 
+The optional field to use to influence the headers is called additionalHeaders.
+For example, you can use skipReportHeader to skip the name of the report or skipReportSummary to skip the summary or skipColumnHeader to skip the row of column names.
+Example:
+
+```js
+/** Setup as above */
+report.getReport('v201606', {
+    reportName: 'Custom Adgroup Performance Report',
+    reportType: 'CAMPAIGN_PERFORMANCE_REPORT',
+    fields: ['CampaignId', 'Impressions', 'Clicks', 'Cost'],
+    filters: [
+        {field: 'CampaignStatus', operator: 'IN', values: ['ENABLED', 'PAUSED']}
+    ],
+    additionalHeaders: {'skipReportHeader': true, 'skipReportSummary': true, 'skipColumnHeader': true},
+    startDate: new Date("07/10/2016"),
+    endDate: new Date(),
+    format: 'CSV' //defaults to CSV
+}, (error, report) => {
+    console.log(error, report);
+});
+```
 
 ## Authentication
 Internally, the node-adwords sdk use the [official google api client](https://github.com/google/google-api-nodejs-client)
