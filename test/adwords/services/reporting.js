@@ -29,4 +29,27 @@ describe('ReportService', function() {
         }, done);
  });
 
+    it('should omit the header when specifying so in additionalHeaders', function(done) {
+        let report = new AdwordsReport(config);
+
+        report.getReport('v201605', {
+            reportName: 'Custom Adgroup Performance Report',
+            reportType: 'CAMPAIGN_PERFORMANCE_REPORT',
+            fields: ['CampaignId', 'Impressions', 'Clicks', 'Cost'],
+            filters: [
+                {field: 'CampaignStatus', operator: 'IN', values: ['ENABLED', 'PAUSED']}
+            ],
+	    additionalHeaders: {'skipReportHeader': true},
+            startDate: new Date("07/10/2016"),
+            endDate: new Date(),
+            format: 'CSV' //defaults to CSV
+        }, function(err, result) {
+	   if (result.includes('Custom Adgroup Performance Report')) {
+		done("Error");
+	   } else {
+                done();
+           }
+	});
+ });
+
 });
