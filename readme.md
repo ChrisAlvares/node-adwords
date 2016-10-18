@@ -93,7 +93,7 @@ report.getReport('v201606', {
     filters: [
         {field: 'CampaignStatus', operator: 'IN', values: ['ENABLED', 'PAUSED']}
     ],
-    additionalHeaders: {'skipReportHeader': true, 'skipReportSummary': true, skipColumnHeader: true},
+    additionalHeaders: {'skipReportHeader': true, 'skipReportSummary': true, 'skipColumnHeader': true},
     startDate: new Date("07/10/2016"),
     endDate: new Date(),
     format: 'CSV' //defaults to CSV
