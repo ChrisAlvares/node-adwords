@@ -16,10 +16,8 @@ describe('AdwordsUser', function() {
                 if (e.message.indexOf("No Service Named") !== -1) {
                     return done();
                 }
-
-                throw new Error(`Unknown error`);
+                throw e;
             }
-
             done('Should have thrown an error if service does not exist');
         });
 
@@ -43,5 +41,3 @@ describe('AdwordsUser', function() {
     });
 
 });
-
-
