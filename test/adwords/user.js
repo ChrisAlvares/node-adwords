@@ -13,8 +13,13 @@ describe('AdwordsUser', function() {
             try {
                 a.getService('doesnotexist')
             } catch(e) {
-                return done();
+                if (e.message.indexOf("No Service Named") !== -1) {
+                    return done();
+                }
+
+                throw new Error(`Unknown error`);
             }
+
             done('Should have thrown an error if service does not exist');
         });
 
@@ -38,3 +43,5 @@ describe('AdwordsUser', function() {
     });
 
 });
+
+
