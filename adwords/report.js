@@ -52,7 +52,7 @@ class AdwordsReport {
                     '__rdxml': xml
                 }
             }, (error, response, body) => {
-                if (error || -1 !== body.indexOf('<?xml')) {
+                if (error || -1 === body.indexOf('<?xml')) {
                     error = error || body;
                     if (-1 !== error.toString().indexOf(AdwordsConstants.OAUTH_ERROR)) {
                         this.credentials.access_token = null;
