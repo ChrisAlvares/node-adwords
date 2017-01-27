@@ -128,6 +128,24 @@ app.get('/adwords/auth', (req, res) => {
 
 ```
 
+## Adwords.Types
+Sometimes, in the Adwords documentation, you will see "Specify xsi:type instead".
+As of version 201609.1.0, you can specify this in the request as another attribute.
+
+```js
+let operation = {
+    operator: 'ADD',
+    operand: {
+        campaignId: '1234567',
+        criterion: {
+            type: 'IP_BLOCK',
+            'xsi:type': 'IpBlock',
+            ipAddress: '123.12.123.12',
+        },
+        'xsi:type': 'NegativeCampaignCriterion'
+    }
+}
+```
 
 ## Testing
 For testing, you will need a refresh token as well as a developer token.
