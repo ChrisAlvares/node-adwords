@@ -13,7 +13,7 @@ class AdwordsReportBuilder {
      * @param report {object}
      */
     buildReport(report) {
-        var xml = builder.create('reportDefinition')
+        var xml = builder.create('reportDefinition');
         this.buildSelector(xml, report);
         xml.ele('reportName', {}, report.reportName);
         xml.ele('reportType', {}, report.reportType);

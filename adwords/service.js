@@ -4,11 +4,12 @@
  * This object acts as many adwords objects
  */
 
-const _ = require('underscore');
+const _ = require('lodash');
 const soap = require('soap');
 const async = require('async');
 const AdwordsAuth = require('./auth');
 const AdwordsConstants = require('./constants');
+const AdwordsRequestParser = require('../lib/request-parser');
 
 class AdwordsService {
 
@@ -44,7 +45,9 @@ class AdwordsService {
      */
     callServiceMethod(method) {
         return _.bind(function() {
-            this.callService(method, arguments[0] || [], arguments[1] || function() {}, true);
+            var payload =  AdwordsRequestParser.convertToValidAdwordsRequest(arguments[0] || []);
+            var callback = arguments[1] || function() {}
+            this.callService(method, payload, callback, true);
         }, this);
     }
 

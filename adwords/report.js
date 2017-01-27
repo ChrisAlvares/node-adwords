@@ -52,9 +52,9 @@ class AdwordsReport {
                     '__rdxml': xml
                 }
             }, (error, response, body) => {
-                if (error || -1 !== body.indexOf('<?xml')) {
+                if (error || this.reportBodyContainsError(report, body)) {
                     error = error || body;
-                    if (-1 !== error.toString().indexOf(AdwordsConstants.OAUTH_ERROR)) {
+                    if (-1 !== error.toString().indexOf(AdwordsConstants.OAUTH_ERROR) && retryRequest) {
                         this.credentials.access_token = null;
                         return this.getReport(apiVersion, report, callback, false);
                     }
@@ -65,6 +65,18 @@ class AdwordsReport {
         });
     }
 
+    /**
+     * Determines if the body contains an error message
+     * @param report {object} the report object
+     * @param body {string} the body string
+     * @return {boolean}
+     */
+    reportBodyContainsError(report, body) {
+        if ('xml' !== (''+report.format).toLowerCase() && -1 !== body.indexOf('<?xml')) {
+            return true;
+        }
+        return false;
+    }
 
     /**
      * Gets the headers for the request
