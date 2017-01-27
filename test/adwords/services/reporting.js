@@ -2,7 +2,7 @@
 /**
  * Reporting endpoint
  */
-const _ = require('underscore');
+const _ = require('lodash');
 const AdwordsReport = require('../../../index').AdwordsReport;
 
 describe('ReportService', function() {

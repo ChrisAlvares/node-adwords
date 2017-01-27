@@ -7,13 +7,12 @@ const AdwordsConstants = require('../../../index').AdwordsConstants;
 
 describe('AdgroupService', function() {
 
-    var config = require('./adwordsuser-config');
+    let config = require('./adwordsuser-config');
     if (!config) {
         return console.log('Adwords User not configured, skipping AdGroup Service tests');
     }
 
-    var user = new AdwordsUser(config);
-
+    let user = new AdwordsUser(config);
 
     it('should return a result with a list of adgroups', function(done) {
         let adgroupService = user.getService('AdGroupService', config.version);

@@ -4,7 +4,7 @@
  */
 
 const util = require('util');
-const _ = require('underscore');
+const _ = require('lodash');
 const AdwordsServiceDescriptors = require('../services');
 const AdwordsService = require('./service');
 const AdwordsConstants = require('./constants');
