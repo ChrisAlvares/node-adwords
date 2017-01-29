@@ -128,6 +128,8 @@ app.get('/adwords/auth', (req, res) => {
 
 ```
 
+# Troubleshooting
+
 ## Adwords.Types
 Sometimes, in the Adwords documentation, you will see "Specify xsi:type instead".
 As of version 201609.1.0, you can specify this in the request as another attribute.
