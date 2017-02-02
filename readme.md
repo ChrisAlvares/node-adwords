@@ -170,6 +170,12 @@ let operation = {
 }
 ```
 
+## Ordering
+Because the Adwords Api uses a non-standard SOAP implementation, the order of the
+elements are required to be in the order of the elements in the documentation.
+When drafting api calls, make sure the order matches the order in the documentation.
+For more information, see [issue #20](https://github.com/ChrisAlvares/node-adwords/issues/20)
+
 ## Testing
 For testing, you will need a refresh token as well as a developer token.
 These should be placed as environmental variables:
