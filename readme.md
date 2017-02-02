@@ -101,6 +101,26 @@ report.getReport('v201609', {
 ```
 
 
+## Adwords Query Language (AWQL)
+
+If you do not want to use the reporting / getters, you can also get the data via
+AWQL.
+
+```js
+const AdwordsUser = require('node-adwords').AdwordsUser;
+const AdwordsConstants = require('node-adwords').AdwordsConstants;
+
+let user = new AdwordsUser({...});
+let campaignService = user.getService('CampaignService')
+
+let params = {
+    query: 'SELECT Id, Name WHERE Status = "ENABLED" ORDER BY Name DESC LIMIT 0,50'
+};
+
+campaignService.get(params, (error, result) => {
+    console.log(error, result);
+})
+```
 
 ## Authentication
 Internally, the node-adwords sdk use the [official google api client](https://github.com/google/google-api-nodejs-client)

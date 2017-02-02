@@ -14,6 +14,11 @@ describe('CampaignService', function() {
 
     let user = new AdwordsUser(config);
 
+    it('should preform an adwords query', function(done) {
+        let campaignService = user.getService('CampaignService', config.version);
+        campaignService.query({query: 'SELECT Id, Name WHERE Status = "ENABLED" ORDER BY Name DESC LIMIT 0,50'}, done);
+    });
+
     it('should return a result with a list of campaigns', function(done) {
         let campaignService = user.getService('CampaignService', config.version);
         let selector = {
