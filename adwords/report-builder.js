@@ -16,11 +16,10 @@ class AdwordsReportBuilder {
         var xml = builder.create('reportDefinition');
         this.buildSelector(xml, report);
         xml.ele('reportName', {}, report.reportName);
-        xml.ele('reportType', {}, report.reportType);
-        xml.ele('dateRangeType', {}, 'CUSTOM_DATE');
+        xml.ele('reportType', {}, report.reportType);    
+        xml.ele('dateRangeType', {}, report.dateRangeType ? report.dateRangeType  : 'CUSTOM_DATE');
         xml.ele('downloadFormat', {}, report.format);
         return xml.end();
-
     }
 
     /**
@@ -33,7 +32,9 @@ class AdwordsReportBuilder {
         var selector = xml.ele('selector');
         this.buildFields(selector, report.fields);
         this.buildFilters(selector, report.filters);
-        this.buildDateRange(selector, report.startDate, report.endDate);
+        if (report.dateRangeType === undefined) {
+            this.buildDateRange(selector, report.startDate, report.endDate);
+        }
     }
 
     /**
