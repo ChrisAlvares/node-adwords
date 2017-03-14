@@ -46,7 +46,7 @@ const AdwordsUser = require('node-adwords').AdwordsUser;
 const AdwordsConstants = require('node-adwords').AdwordsConstants;
 
 let user = new AdwordsUser({...});
-let campaignService = user.getService('CampaignService', 'v201609')
+let campaignService = user.getService('CampaignService', 'v201702')
 
 //create selector
 let selector = {
@@ -71,7 +71,7 @@ regular api.
 const AdwordsReport = require('node-adwords').AdwordsReport;
 
 let report = new AdwordsReport({/** same config as AdwordsUser above */});
-report.getReport('v201609', {
+report.getReport('v201702', {
     reportName: 'Custom Adgroup Performance Report',
     reportType: 'CAMPAIGN_PERFORMANCE_REPORT',
     fields: ['CampaignId', 'Impressions', 'Clicks', 'Cost'],
@@ -89,7 +89,7 @@ report.getReport('v201609', {
 You can also pass in additional headers in case you need to remove the header rows
 
 ```js
-report.getReport('v201609', {
+report.getReport('v201702', {
     ...
     additionalHeaders: {
         skipReportHeader: true,

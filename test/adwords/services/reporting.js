@@ -16,7 +16,7 @@ describe('ReportService', function() {
     it('should return a valid report', function(done) {
         let report = new AdwordsReport(config);
 
-        report.getReport('v201609', {
+        report.getReport('v201702', {
             reportName: 'Custom Adgroup Performance Report',
             reportType: 'CAMPAIGN_PERFORMANCE_REPORT',
             fields: ['CampaignId', 'Impressions', 'Clicks', 'Cost'],
@@ -32,7 +32,7 @@ describe('ReportService', function() {
     it('should return a valid report for xml type reports', function(done) {
         let report = new AdwordsReport(config);
 
-        report.getReport('v201609', {
+        report.getReport('v201702', {
             reportName: 'Custom Adgroup Performance Report',
             reportType: 'CAMPAIGN_PERFORMANCE_REPORT',
             fields: ['CampaignId', 'Impressions', 'Clicks', 'Cost'],
@@ -50,7 +50,7 @@ describe('ReportService', function() {
         newConfig.refresh_token = null;
         newConfig.access_token = null;
         let report = new AdwordsReport(newConfig);
-        report.getReport('v201609', {
+        report.getReport('v201702', {
             reportName: 'Custom Adgroup Performance Report',
             reportType: 'CAMPAIGN_PERFORMANCE_REPORT',
             fields: ['CampaignId', 'Impressions', 'Clicks', 'Cost'],
