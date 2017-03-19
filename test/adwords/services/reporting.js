@@ -12,59 +12,81 @@ describe('ReportService', function() {
         return console.log('Adwords User not configured, skipping ReportService Service tests');
     }
 
+    describe('when definined via XML', function(){
+        it('should return a valid report', function(done) {
+            let report = new AdwordsReport(config);
 
-    it('should return a valid report', function(done) {
-        let report = new AdwordsReport(config);
+            report.getReport('v201702', {
+                reportName: 'Custom Adgroup Performance Report',
+                reportType: 'CAMPAIGN_PERFORMANCE_REPORT',
+                fields: ['CampaignId', 'Impressions', 'Clicks', 'Cost'],
+                filters: [
+                    {field: 'CampaignStatus', operator: 'IN', values: ['ENABLED', 'PAUSED']}
+                ],
+                startDate: new Date("07/10/2016"),
+                endDate: new Date(),
+                format: 'CSV' //defaults to CSV
+            }, done);
+        });
 
-        report.getReport('v201702', {
-            reportName: 'Custom Adgroup Performance Report',
-            reportType: 'CAMPAIGN_PERFORMANCE_REPORT',
-            fields: ['CampaignId', 'Impressions', 'Clicks', 'Cost'],
-            filters: [
-                {field: 'CampaignStatus', operator: 'IN', values: ['ENABLED', 'PAUSED']}
-            ],
-            startDate: new Date("07/10/2016"),
-            endDate: new Date(),
-            format: 'CSV' //defaults to CSV
-        }, done);
-    });
+        it('should return a valid report for xml type reports', function(done) {
+            let report = new AdwordsReport(config);
 
-    it('should return a valid report for xml type reports', function(done) {
-        let report = new AdwordsReport(config);
+            report.getReport('v201702', {
+                reportName: 'Custom Adgroup Performance Report',
+                reportType: 'CAMPAIGN_PERFORMANCE_REPORT',
+                fields: ['CampaignId', 'Impressions', 'Clicks', 'Cost'],
+                filters: [
+                    {field: 'CampaignStatus', operator: 'IN', values: ['ENABLED', 'PAUSED']}
+                ],
+                startDate: new Date("07/10/2016"),
+                endDate: new Date(),
+                format: 'XML'
+            }, done);
+        });
 
-        report.getReport('v201702', {
-            reportName: 'Custom Adgroup Performance Report',
-            reportType: 'CAMPAIGN_PERFORMANCE_REPORT',
-            fields: ['CampaignId', 'Impressions', 'Clicks', 'Cost'],
-            filters: [
-                {field: 'CampaignStatus', operator: 'IN', values: ['ENABLED', 'PAUSED']}
-            ],
-            startDate: new Date("07/10/2016"),
-            endDate: new Date(),
-            format: 'XML'
-        }, done);
-    });
-
-    it('should return an invalid report for a bad access token', function(done) {
-        let newConfig = _.clone(config);
-        newConfig.refresh_token = null;
-        newConfig.access_token = null;
-        let report = new AdwordsReport(newConfig);
-        report.getReport('v201702', {
-            reportName: 'Custom Adgroup Performance Report',
-            reportType: 'CAMPAIGN_PERFORMANCE_REPORT',
-            fields: ['CampaignId', 'Impressions', 'Clicks', 'Cost'],
-            filters: [
-                {field: 'CampaignStatus', operator: 'IN', values: ['ENABLED', 'PAUSED']}
-            ],
-            startDate: new Date("07/10/2016"),
-            endDate: new Date(),
-            format: 'XML'
-        }, (error, data) => {
-            if (error) {
-                return done();
-            }
-            done(new Error('Should have errored with bad access token'));
+        it('should return an invalid report for a bad access token', function(done) {
+            let newConfig = _.clone(config);
+            newConfig.refresh_token = null;
+            newConfig.access_token = null;
+            let report = new AdwordsReport(newConfig);
+            report.getReport('v201702', {
+                reportName: 'Custom Adgroup Performance Report',
+                reportType: 'CAMPAIGN_PERFORMANCE_REPORT',
+                fields: ['CampaignId', 'Impressions', 'Clicks', 'Cost'],
+                filters: [
+                    {field: 'CampaignStatus', operator: 'IN', values: ['ENABLED', 'PAUSED']}
+                ],
+                startDate: new Date("07/10/2016"),
+                endDate: new Date(),
+                format: 'XML'
+            }, (error, data) => {
+                if (error) {
+                    return done();
+                }
+                done(new Error('Should have errored with bad access token'));
+            });
         });
     });
+
+    describe('when defined via AWQL', function(){
+        it('should return a valid report', function(done) {
+            let report = new AdwordsReport(config);
+
+            report.getReport('v201702', {
+                query: 'SELECT CampaignId, Impressions, Clicks, Cost FROM CAMPAIGN_PERFORMANCE_REPORT',
+                format: 'CSV' //defaults to CSV
+            }, done);
+        });
+
+        it('should return a valid report for xml type reports', function(done) {
+            let report = new AdwordsReport(config);
+
+            report.getReport('v201702', {
+                query: 'SELECT CampaignId, Impressions, Clicks, Cost FROM CAMPAIGN_PERFORMANCE_REPORT',
+                format: 'XML'
+            }, done);
+        });
+    });
+
 });
