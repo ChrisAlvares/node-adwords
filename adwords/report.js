@@ -43,14 +43,24 @@ class AdwordsReport {
                 return callback(error);
             }
             var b = new AdwordsReportBuilder();
-            var xml = b.buildReport(report);
+
+            var formData = null;
+            if (!!report.query) {
+              formData = {
+                '__rdquery': report.query,
+                '__fmt': report.format || 'CSV'
+              }
+            } else {
+              formData = {
+                '__rdxml': b.buildReport(report)
+              }
+            }
+
             request({
-                uri: 'https://adwords.google.com/api/adwords/reportdownload/' + apiVersion,
-                method: 'POST',
-                headers: headers,
-                form: {
-                    '__rdxml': xml
-                }
+              uri: 'https://adwords.google.com/api/adwords/reportdownload/' + apiVersion,
+              method: 'POST',
+              headers: headers,
+              form: formData
             }, (error, response, body) => {
                 if (error || this.reportBodyContainsError(report, body)) {
                     error = error || body;
