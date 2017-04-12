@@ -3,6 +3,7 @@
  * Helper class to help build a report
  */
 const builder = require('xmlbuilder');
+const AdwordsConstants = require('./constants');
 const moment = require('moment');
 
 class AdwordsReportBuilder {
@@ -17,7 +18,11 @@ class AdwordsReportBuilder {
         this.buildSelector(xml, report);
         xml.ele('reportName', {}, report.reportName);
         xml.ele('reportType', {}, report.reportType);
-        xml.ele('dateRangeType', {}, 'CUSTOM_DATE');
+
+        if (this.hasDateRangeFilter(report)) {
+            xml.ele('dateRangeType', {}, report.dateRangeType || AdwordsConstants.DATE_RANGE_TYPES.CUSTOM_DATE);
+        }
+
         xml.ele('downloadFormat', {}, report.format);
         return xml.end();
 
@@ -56,9 +61,11 @@ class AdwordsReportBuilder {
      * @param endDate {date}
      */
     buildDateRange(selector, startDate, endDate) {
-        var dateElement = selector.ele('dateRange');
-        dateElement.ele('min', {}, moment(new Date(startDate)).format('YYYYMMDD'));
-        dateElement.ele('max', {}, moment(new Date(endDate)).format('YYYYMMDD'));
+        if (startDate || endDate) {
+            var dateElement = selector.ele('dateRange');
+            dateElement.ele('min', {}, moment(new Date(startDate)).format('YYYYMMDD'));
+            dateElement.ele('max', {}, moment(new Date(endDate)).format('YYYYMMDD'));
+        }
     }
 
     /**
@@ -81,7 +88,14 @@ class AdwordsReportBuilder {
         }
     }
 
-
+    /**
+     * Determines if a report has a date range filter
+     * @access public
+     * @
+     */
+    hasDateRangeFilter(report) {
+        return !!(report.dateRangeType || report.startDate || report.endDate);
+    }
 
 
 

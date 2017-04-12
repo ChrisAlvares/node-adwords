@@ -45,6 +45,33 @@ describe('ReportService', function() {
             }, done);
         });
 
+        it('should return a valid report for a date type instead of custom dates', function(done) {
+            let report = new AdwordsReport(config);
+            report.getReport('v201702', {
+                reportName: 'Custom Adgroup Performance Report',
+                reportType: 'CAMPAIGN_PERFORMANCE_REPORT',
+                fields: ['CampaignId', 'Impressions', 'Clicks', 'Cost'],
+                filters: [
+                    {field: 'CampaignStatus', operator: 'IN', values: ['ENABLED', 'PAUSED']}
+                ],
+                dateRangeType: 'YESTERDAY',
+                format: 'CSV' //defaults to CSV
+            }, done);
+        });
+
+        it('should return a valid report without a date field', function(done) {
+            let report = new AdwordsReport(config);
+            report.getReport('v201702', {
+                reportName: 'Custom Criteria Performance Report',
+                reportType: 'SHARED_SET_CRITERIA_REPORT',
+                fields: ['AccountDescriptiveName'],
+                dateRangeType: 'ALL_TIME',
+                format: 'CSV' //defaults to CSV
+            }, done);
+        });
+
+
+
         it('should return an invalid report for a bad access token', function(done) {
             let newConfig = _.clone(config);
             newConfig.refresh_token = null;
@@ -67,6 +94,8 @@ describe('ReportService', function() {
                 done(new Error('Should have errored with bad access token'));
             });
         });
+
+
     });
 
     describe('when defined via AWQL', function(){

@@ -78,6 +78,7 @@ report.getReport('v201702', {
     filters: [
         {field: 'CampaignStatus', operator: 'IN', values: ['ENABLED', 'PAUSED']}
     ],
+    dateRangeType: 'CUSTOM_DATE', //defaults to CUSTOM_DATE. startDate or endDate required for CUSTOM_DATE
     startDate: new Date("07/10/2016"),
     endDate: new Date(),
     format: 'CSV' //defaults to CSV
@@ -122,6 +123,17 @@ campaignService.get(params, (error, result) => {
 })
 ```
 
+You can also use AWQL with Performance Reports
+
+```js
+let report = new AdwordsReport({/** same config as AdwordsUser above */});
+report.getReport('v201702', {
+    query: 'SELECT Criteria FROM KEYWORDS_PERFORMANCE_REPORT DURING 20170101,20170325',
+    format: 'CSV'
+});
+
+
+```
 ## Authentication
 Internally, the node-adwords sdk use the [official google api client](https://github.com/google/google-api-nodejs-client)
 for authenticating users. Using the `https://www.googleapis.com/auth/adwords` scope.
