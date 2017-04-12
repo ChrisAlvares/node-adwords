@@ -42,25 +42,12 @@ class AdwordsReport {
             if (error) {
                 return callback(error);
             }
-            var b = new AdwordsReportBuilder();
-
-            var formData = null;
-            if (!!report.query) {
-              formData = {
-                '__rdquery': report.query,
-                '__fmt': report.format || 'CSV'
-              }
-            } else {
-              formData = {
-                '__rdxml': b.buildReport(report)
-              }
-            }
 
             request({
-              uri: 'https://adwords.google.com/api/adwords/reportdownload/' + apiVersion,
-              method: 'POST',
-              headers: headers,
-              form: formData
+                uri: 'https://adwords.google.com/api/adwords/reportdownload/' + apiVersion,
+                method: 'POST',
+                headers: headers,
+                form: this.buildReportBody(report)
             }, (error, response, body) => {
                 if (error || this.reportBodyContainsError(report, body)) {
                     error = error || body;
@@ -124,6 +111,28 @@ class AdwordsReport {
             this.credentials.access_token = tokens.access_token;
             callback(null, this.credentials.access_token);
         });
+    }
+
+    /**
+     * Builds the report body
+     * @access protected
+     * @param report {object} the adwords report
+     * @return {object} a formated formData
+     */
+    buildReportBody(report) {
+        var b = new AdwordsReportBuilder();
+        var form;
+        if (report.query) {
+            form = {
+                '__rdquery': report.query,
+                '__fmt': report.format || 'CSV'
+            };
+        } else {
+            form = {
+                '__rdxml': b.buildReport(report)
+            }
+        }
+        return form;
     }
 
 
