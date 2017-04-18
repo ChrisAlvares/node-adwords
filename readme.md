@@ -141,7 +141,7 @@ The node-adwords sdk has some helper methods for you to authenticate if you do n
 need additional scopes.
 
 ```js
-const AdwordsUser = require('node-adwords').AdwordsAuth;
+const AdwordsAuth = require('node-adwords').AdwordsAuth;
 
 let auth = new AdwordsAuth({
     client_id: 'INSERT_OAUTH2_CLIENT_ID_HERE', //this is the api console client_id
