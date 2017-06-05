@@ -188,6 +188,27 @@ elements are required to be in the order of the elements in the documentation.
 When drafting api calls, make sure the order matches the order in the documentation.
 For more information, see [issue #20](https://github.com/ChrisAlvares/node-adwords/issues/20)
 
+```js
+//this will work
+let operation = {
+    operator: 'ADD',
+    operand: {
+     ....
+    }
+}
+```
+
+```js
+//this will not work
+let operation = {
+    operand: {
+     ....
+    },
+    operator: 'ADD',
+}
+```
+
+
 ## Testing
 For testing, you will need a refresh token as well as a developer token.
 These should be placed as environmental variables:
