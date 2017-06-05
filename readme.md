@@ -9,13 +9,6 @@ This API is the first feature complete Adwords Api for Node.
 
 You will need an Adwords developer token. Apply [here](https://developers.google.com/adwords/api/docs/guides/signup)
 
-**Note about versioning**: This library is going to follow the Adwords Api and not
-standard semvar. We are going to jump from 1.0 to 201607.0. Whenever a new version
-of the Api comes out, we will update to the version inside Adwords. You will need
-to update via `npm outdated`. This is because the Adwords Api is always
-introducing new apis and breaking old ones.
-
-
 ## Getting Started
 
 The main adwords user object follows the [auth](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/Api/Ads/AdWords/auth.ini) parameters
