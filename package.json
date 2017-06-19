@@ -1,6 +1,6 @@
 {
   "name": "node-adwords",
-  "version": "201702.1.1",
+  "version": "201702.2.0",
   "description": "An unofficial - feature complete - Adwords sdk for NodeJS",
   "main": "index.js",
   "scripts": {
