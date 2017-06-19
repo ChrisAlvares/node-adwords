@@ -127,6 +127,30 @@ module.exports = {
 			'query'
 		]
 	},
+	'CampaignBidModifierService': {
+		'xmlns': 'https://adwords.google.com/api/adwords/cm/{{version}}',
+		'wsdl': 'https://adwords.google.com/api/adwords/cm/{{version}}/CampaignGroupService?wsdl',
+		'methods': [
+			'get',
+			'mutate'
+		]
+	},
+	'CampaignGroupPerformanceTargetService': {
+		'xmlns': 'https://adwords.google.com/api/adwords/cm/{{version}}',
+		'wsdl': 'https://adwords.google.com/api/adwords/cm/{{version}}/CampaignGroupPerformanceTargetService?wsdl',
+		'methods': [
+			'get',
+			'mutate'
+		]
+	},
+	'CampaignBidModifierService': {
+		'xmlns': 'https://adwords.google.com/api/adwords/cm/{{version}}',
+		'wsdl': 'https://adwords.google.com/api/adwords/cm/{{version}}/CampaignBidModifierService?wsdl',
+		'methods': [
+			'get',
+			'mutate'
+		]
+	},
 	'CampaignCriterionService': {
 		'xmlns': 'https://adwords.google.com/api/adwords/cm/{{version}}',
 		'wsdl': 'https://adwords.google.com/api/adwords/cm/{{version}}/CampaignCriterionService?wsdl',

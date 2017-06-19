@@ -51,8 +51,6 @@ describe('AdgroupService', function() {
             name: 'NodeAdwordsTestAdgroup ' + Date.now(),
             status: 'PAUSED',
             biddingStrategyConfiguration: {
-                biddingStrategyType: 'MANUAL_CPC',
-                biddingStrategySource: 'ADGROUP',
                 bids: [{
                     'xsi:type': 'CpaBid',
                     bid: {
