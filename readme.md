@@ -1,6 +1,6 @@
 # Node Adwords Api
 
-This is an unofficial Adwords sdk for NodeJS > 3.0. This Api mirrors the official
+This is an unofficial Adwords sdk for NodeJS > 6.0. This Api mirrors the official
 api pretty well so you can always look at the
 [Adwords documentation](https://developers.google.com/adwords/api/docs/reference/)
 and even the PHP sdk if something doesn't stand out.
@@ -11,7 +11,7 @@ You will need an Adwords developer token. Apply [here](https://developers.google
 
 ## Getting Started
 
-The main adwords user object follows the [auth](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/Api/Ads/AdWords/auth.ini) parameters
+The main adwords user object follows the [auth](https://github.com/googleads/googleads-php-lib/blob/19.0.0/src/Google/Api/Ads/AdWords/auth.ini) parameters
 of the PHP library.
 
 ```js
@@ -39,7 +39,7 @@ const AdwordsUser = require('node-adwords').AdwordsUser;
 const AdwordsConstants = require('node-adwords').AdwordsConstants;
 
 let user = new AdwordsUser({...});
-let campaignService = user.getService('CampaignService', 'v201705')
+let campaignService = user.getService('CampaignService', 'v201708')
 
 //create selector
 let selector = {
@@ -64,7 +64,7 @@ regular api.
 const AdwordsReport = require('node-adwords').AdwordsReport;
 
 let report = new AdwordsReport({/** same config as AdwordsUser above */});
-report.getReport('v201705', {
+report.getReport('v201708', {
     reportName: 'Custom Adgroup Performance Report',
     reportType: 'CAMPAIGN_PERFORMANCE_REPORT',
     fields: ['CampaignId', 'Impressions', 'Clicks', 'Cost'],
@@ -83,7 +83,7 @@ report.getReport('v201705', {
 You can also pass in additional headers in case you need to remove the header rows
 
 ```js
-report.getReport('v201705', {
+report.getReport('v201708', {
     ...
     additionalHeaders: {
         skipReportHeader: true,
@@ -120,7 +120,7 @@ You can also use AWQL with Performance Reports
 
 ```js
 let report = new AdwordsReport({/** same config as AdwordsUser above */});
-report.getReport('v201705', {
+report.getReport('v201708', {
     query: 'SELECT Criteria FROM KEYWORDS_PERFORMANCE_REPORT DURING 20170101,20170325',
     format: 'CSV'
 });
