@@ -132,7 +132,8 @@ module.exports = {
 		'wsdl': 'https://adwords.google.com/api/adwords/cm/{{version}}/CampaignGroupService?wsdl',
 		'methods': [
 			'get',
-			'mutate'
+			'mutate',
+			'query'
 		]
 	},
 	'CampaignGroupPerformanceTargetService': {
