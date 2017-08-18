@@ -1,9 +1,15 @@
 # Changelog
 
+201708.1.0 / 2017-08-17
+=======================
+
+* Added support for api version 201708
+* Added support for the CampaignGroupService's query method
+
 201705.1.0 / 2017-06-19
 =======================
 
-* Added support for api version 201705
+* Added support for api version 201708
 * Added support for CampaignGroupService
 * Added support for CampaignGroupPerformanceTargetService
 * Added support for CampaignBidModifierService
