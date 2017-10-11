@@ -1,5 +1,12 @@
 # Changelog
 
+201710.1.0 / 2017-10-10
+=======================
+
+* Added support for api version 201710
+* Added support for the CustomerNegativeCriterionService
+
+
 201708.1.0 / 2017-08-17
 =======================
 
@@ -9,7 +16,7 @@
 201705.1.0 / 2017-06-19
 =======================
 
-* Added support for api version 201708
+* Added support for api version 201705
 * Added support for CampaignGroupService
 * Added support for CampaignGroupPerformanceTargetService
 * Added support for CampaignBidModifierService

@@ -61,7 +61,6 @@ describe('CampaignService', function() {
                 budget: {
                     budgetId: budget.budgetId
                 },
-                adServingOptimizationStatus: 'CONVERSION_OPTIMIZE',
                 advertisingChannelType: 'SEARCH',
                 biddingStrategyConfiguration: {
                     biddingStrategyType: 'MANUAL_CPC'

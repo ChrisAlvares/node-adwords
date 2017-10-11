@@ -241,6 +241,15 @@ module.exports = {
 			'query'
 		]
 	},
+	'CustomerNegativeCriterionService': {
+		'xmlns': 'https://adwords.google.com/api/adwords/cm/{{version}}',
+		'wsdl': 'https://adwords.google.com/api/adwords/cm/{{version}}/CustomerNegativeCriterionService?wsdl',
+		'methods': [
+			'get',
+			'mutate',
+			'query'
+		]
+	},
 	'CustomerService': {
 		'xmlns': 'https://adwords.google.com/api/adwords/mcm/{{version}}',
 		'wsdl': 'https://adwords.google.com/api/adwords/mcm/{{version}}/CustomerService?wsdl',
