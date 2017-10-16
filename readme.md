@@ -1,6 +1,6 @@
 # Node Adwords Api
 
-This is an unofficial Adwords sdk for NodeJS > 3.0. This Api mirrors the official
+This is an unofficial Adwords sdk for NodeJS > 6.0. This Api mirrors the official
 api pretty well so you can always look at the
 [Adwords documentation](https://developers.google.com/adwords/api/docs/reference/)
 and even the PHP sdk if something doesn't stand out.
@@ -9,16 +9,9 @@ This API is the first feature complete Adwords Api for Node.
 
 You will need an Adwords developer token. Apply [here](https://developers.google.com/adwords/api/docs/guides/signup)
 
-**Note about versioning**: This library is going to follow the Adwords Api and not
-standard semvar. We are going to jump from 1.0 to 201607.0. Whenever a new version
-of the Api comes out, we will update to the version inside Adwords. You will need
-to update via `npm outdated`. This is because the Adwords Api is always
-introducing new apis and breaking old ones.
-
-
 ## Getting Started
 
-The main adwords user object follows the [auth](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/Api/Ads/AdWords/auth.ini) parameters
+The main adwords user object follows the [auth](https://github.com/googleads/googleads-php-lib/blob/19.0.0/src/Google/Api/Ads/AdWords/auth.ini) parameters
 of the PHP library.
 
 ```js
@@ -46,7 +39,7 @@ const AdwordsUser = require('node-adwords').AdwordsUser;
 const AdwordsConstants = require('node-adwords').AdwordsConstants;
 
 let user = new AdwordsUser({...});
-let campaignService = user.getService('CampaignService', 'v201702')
+let campaignService = user.getService('CampaignService', 'v201710')
 
 //create selector
 let selector = {
@@ -71,7 +64,7 @@ regular api.
 const AdwordsReport = require('node-adwords').AdwordsReport;
 
 let report = new AdwordsReport({/** same config as AdwordsUser above */});
-report.getReport('v201702', {
+report.getReport('v201710', {
     reportName: 'Custom Adgroup Performance Report',
     reportType: 'CAMPAIGN_PERFORMANCE_REPORT',
     fields: ['CampaignId', 'Impressions', 'Clicks', 'Cost'],
@@ -90,7 +83,7 @@ report.getReport('v201702', {
 You can also pass in additional headers in case you need to remove the header rows
 
 ```js
-report.getReport('v201702', {
+report.getReport('v201710', {
     ...
     additionalHeaders: {
         skipReportHeader: true,
@@ -127,7 +120,7 @@ You can also use AWQL with Performance Reports
 
 ```js
 let report = new AdwordsReport({/** same config as AdwordsUser above */});
-report.getReport('v201702', {
+report.getReport('v201710', {
     query: 'SELECT Criteria FROM KEYWORDS_PERFORMANCE_REPORT DURING 20170101,20170325',
     format: 'CSV'
 });
@@ -265,6 +258,27 @@ Because the Adwords Api uses a non-standard SOAP implementation, the order of th
 elements are required to be in the order of the elements in the documentation.
 When drafting api calls, make sure the order matches the order in the documentation.
 For more information, see [issue #20](https://github.com/ChrisAlvares/node-adwords/issues/20)
+
+```js
+//this will work
+let operation = {
+    operator: 'ADD',
+    operand: {
+     ....
+    }
+}
+```
+
+```js
+//this will not work
+let operation = {
+    operand: {
+     ....
+    },
+    operator: 'ADD',
+}
+```
+
 
 ## Testing
 For testing, you will need a refresh token as well as a developer token.

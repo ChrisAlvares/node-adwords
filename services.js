@@ -127,6 +127,31 @@ module.exports = {
 			'query'
 		]
 	},
+	'CampaignBidModifierService': {
+		'xmlns': 'https://adwords.google.com/api/adwords/cm/{{version}}',
+		'wsdl': 'https://adwords.google.com/api/adwords/cm/{{version}}/CampaignGroupService?wsdl',
+		'methods': [
+			'get',
+			'mutate',
+			'query'
+		]
+	},
+	'CampaignGroupPerformanceTargetService': {
+		'xmlns': 'https://adwords.google.com/api/adwords/cm/{{version}}',
+		'wsdl': 'https://adwords.google.com/api/adwords/cm/{{version}}/CampaignGroupPerformanceTargetService?wsdl',
+		'methods': [
+			'get',
+			'mutate'
+		]
+	},
+	'CampaignBidModifierService': {
+		'xmlns': 'https://adwords.google.com/api/adwords/cm/{{version}}',
+		'wsdl': 'https://adwords.google.com/api/adwords/cm/{{version}}/CampaignBidModifierService?wsdl',
+		'methods': [
+			'get',
+			'mutate'
+		]
+	},
 	'CampaignCriterionService': {
 		'xmlns': 'https://adwords.google.com/api/adwords/cm/{{version}}',
 		'wsdl': 'https://adwords.google.com/api/adwords/cm/{{version}}/CampaignCriterionService?wsdl',
@@ -210,6 +235,15 @@ module.exports = {
 	'CustomerFeedService': {
 		'xmlns': 'https://adwords.google.com/api/adwords/cm/{{version}}',
 		'wsdl': 'https://adwords.google.com/api/adwords/cm/{{version}}/CustomerFeedService?wsdl',
+		'methods': [
+			'get',
+			'mutate',
+			'query'
+		]
+	},
+	'CustomerNegativeCriterionService': {
+		'xmlns': 'https://adwords.google.com/api/adwords/cm/{{version}}',
+		'wsdl': 'https://adwords.google.com/api/adwords/cm/{{version}}/CustomerNegativeCriterionService?wsdl',
 		'methods': [
 			'get',
 			'mutate',
