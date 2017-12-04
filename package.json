@@ -26,7 +26,7 @@
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "request": "^2.81.0",
-    "soap": "^0.20.0",
+    "soap": "^0.23.0",
     "xmlbuilder": "^9.0.4"
   },
   "devDependencies": {
