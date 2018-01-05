@@ -47,7 +47,8 @@ class AdwordsReport {
                 uri: 'https://adwords.google.com/api/adwords/reportdownload/' + apiVersion,
                 method: 'POST',
                 headers: headers,
-                form: this.buildReportBody(report)
+                form: this.buildReportBody(report),
+                timeout: report.timeout || 60 * 10 * 1000,
             }, (error, response, body) => {
                 if (error || this.reportBodyContainsError(report, body)) {
                     error = error || body;
