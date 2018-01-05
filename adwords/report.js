@@ -48,7 +48,7 @@ class AdwordsReport {
                 method: 'POST',
                 headers: headers,
                 form: this.buildReportBody(report),
-                timeout: report.timeout || 60 * 10 * 1000,
+                timeout: 30 * 1000,
             }, (error, response, body) => {
                 if (error || this.reportBodyContainsError(report, body)) {
                     error = error || body;
