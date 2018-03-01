@@ -305,6 +305,15 @@ module.exports = {
 			'query'
 		]
 	},
+	'FeedItemTargetService': {
+		'xmlns': 'https://adwords.google.com/api/adwords/cm/{{version}}',
+		'wsdl': 'https://adwords.google.com/api/adwords/cm/{{version}}/FeedItemTargetService?wsdl',
+		'methods': [
+			'get',
+			'mutate',
+			'query'
+		]
+	},
 	'FeedMappingService': {
 		'xmlns': 'https://adwords.google.com/api/adwords/cm/{{version}}',
 		'wsdl': 'https://adwords.google.com/api/adwords/cm/{{version}}/FeedMappingService?wsdl',

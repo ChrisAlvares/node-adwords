@@ -20,6 +20,10 @@ describe('AdgroupCriterionService', function() {
         let adgroupService = user.getService('AdGroupService', config.version);
         let selector = {
             fields: ['Id'],
+            predicates: [
+                {field: 'CampaignStatus', operator: 'EQUALS', values: ['ENABLED']},
+                {field: 'Status', operator: 'EQUALS', values: ['ENABLED']}
+            ],
             ordering: [{field: 'Name', sortOrder: 'ASCENDING'}],
             paging: {startIndex: 0, numberResults: 1}
         }
