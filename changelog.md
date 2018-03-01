@@ -3,6 +3,13 @@
 201710.1.0 / 2017-10-10
 =======================
 
+* Added support for api version 201802
+* Added support for the CustomerNegativeCriterionService
+
+
+201710.1.0 / 2017-10-10
+=======================
+
 * Added support for api version 201710
 * Added support for the CustomerNegativeCriterionService
 
