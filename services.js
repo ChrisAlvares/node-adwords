@@ -384,6 +384,14 @@ module.exports = {
 			'mutate'
 		]
 	},
+	'OfflineDataUploadService': {
+		'xmlns': 'https://adwords.google.com/api/adwords/cm/{{version}}',
+		'wsdl': 'https://adwords.google.com/api/adwords/cm/{{version}}/OfflineDataUploadService?wsdl',
+		'methods': [
+			'get',
+			'mutate'
+		]
+	},
 	'ReportDefinitionService': {
 		'xmlns': 'https://adwords.google.com/api/adwords/cm/{{version}}',
 		'wsdl': 'https://adwords.google.com/api/adwords/cm/{{version}}/ReportDefinitionService?wsdl',
