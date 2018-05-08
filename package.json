@@ -22,10 +22,10 @@
   "homepage": "https://github.com/ChrisAlvares/node-adwords#readme",
   "dependencies": {
     "async": "^2.6.0",
-    "googleapis": "^20.1.0",
+    "googleapis": "^29.0.0",
     "lodash": "^4.17.5",
     "moment": "^2.20.1",
-    "request": "^2.83.0",
+    "request": "^2.85.0",
     "soap": "^0.23.0",
     "xmlbuilder": "^9.0.7"
   },
