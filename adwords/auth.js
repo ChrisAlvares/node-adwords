@@ -1,7 +1,8 @@
 'use strict';
 
-var google = require('googleapis').google;
-var OAuth2 = google.auth.OAuth2;
+const googleapis = require('googleapis');
+const OAuth2 = googleapis.google.auth.OAuth2;
+
 
 class AdwordsAuth {
 
