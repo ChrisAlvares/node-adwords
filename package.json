@@ -4,7 +4,7 @@
   "description": "An unofficial - feature complete - Adwords sdk for NodeJS",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test"
+    "test": "mocha -r dotenv/config test"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,7 @@
     "xmlbuilder": "^10.0.0"
   },
   "devDependencies": {
+    "dotenv": "^6.0.0",
     "mocha": "^5.2.0"
   }
 }
