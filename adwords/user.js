@@ -37,12 +37,16 @@ class AdwordsUser {
     getService(service, adwordsVersion, attributesKey = 'attributes') {
     // getService(service, adwordsVersion) {
         adwordsVersion = adwordsVersion || AdwordsConstants.DEFAULT_ADWORDS_VERSION;
+        if (service === 'FeedService') {
+        attributesKey = 'attributesKey'
+        }
         var serviceDescriptor = AdwordsServiceDescriptors[service];
         if (!serviceDescriptor) {
             throw new Error(
                 util.format('No Service Named %s in %s of the adwords api', service, adwordsVersion)
             );
         }
+
 
         var service = new AdwordsService(
             this.credentials,
