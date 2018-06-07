@@ -1,9 +1,18 @@
 # Changelog
 
+201806.0.1 / 2018-06-07
+=======================
+
+* Added support for api version 201806
+* Added support for AdService
+* Added support for AssetService
+* Added support for CustomAffinityService
+* Added support for OfflineConversionAdjustmentFeedService
+
 201802.3.0 / 2018-05-23
 =======================
 
-* Updated dependencies 
+* Updated dependencies
 
 201802.1.0 / 2018-02-01
 =======================

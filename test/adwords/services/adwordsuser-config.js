@@ -18,7 +18,7 @@ if (developerToken && refreshToken && clientId && clientSecret && clientCustomer
         client_id: clientId,
         client_secret: clientSecret,
         refresh_token: refreshToken,
-        version: 'v201802'
+        version: 'v201806'
     };
 }
 
