@@ -39,7 +39,7 @@ const AdwordsUser = require('node-adwords').AdwordsUser;
 const AdwordsConstants = require('node-adwords').AdwordsConstants;
 
 let user = new AdwordsUser({...});
-let campaignService = user.getService('CampaignService', 'v201802')
+let campaignService = user.getService('CampaignService', 'v201806')
 
 //create selector
 let selector = {
@@ -64,7 +64,7 @@ regular api.
 const AdwordsReport = require('node-adwords').AdwordsReport;
 
 let report = new AdwordsReport({/** same config as AdwordsUser above */});
-report.getReport('v201802', {
+report.getReport('v201806', {
     reportName: 'Custom Adgroup Performance Report',
     reportType: 'CAMPAIGN_PERFORMANCE_REPORT',
     fields: ['CampaignId', 'Impressions', 'Clicks', 'Cost'],
@@ -83,7 +83,7 @@ report.getReport('v201802', {
 You can also pass in additional headers in case you need to remove the header rows
 
 ```js
-report.getReport('v201802', {
+report.getReport('v201806', {
     ...
     additionalHeaders: {
         skipReportHeader: true,
@@ -120,7 +120,7 @@ You can also use AWQL with Performance Reports
 
 ```js
 let report = new AdwordsReport({/** same config as AdwordsUser above */});
-report.getReport('v201802', {
+report.getReport('v201806', {
     query: 'SELECT Criteria FROM KEYWORDS_PERFORMANCE_REPORT DURING 20170101,20170325',
     format: 'CSV'
 });
