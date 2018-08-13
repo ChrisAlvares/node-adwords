@@ -69,7 +69,10 @@ class AdwordsReport {
      * @return {boolean}
      */
     reportBodyContainsError(report, body) {
-        if ('xml' !== (''+report.format).toLowerCase() && -1 !== body.indexOf('<?xml')) {
+        if (
+            'xml' !== (''+report.format).toLowerCase() && -1 !== body.indexOf('<?xml')
+            || body.toString().indexOf(AdwordsConstants.OAUTH_ERROR) !== -1
+        ) {
             return true;
         }
         return false;
