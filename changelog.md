@@ -1,5 +1,10 @@
 # Changelog
 
+201806.0.2 / 2018-09-21
+=======================
+
+* Removed dependency for entire googleapi package using google-auth-library instead
+
 201806.0.1 / 2018-06-07
 =======================
 
