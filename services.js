@@ -143,7 +143,7 @@ module.exports = {
 			'query'
 		]
 	},
-	'CampaignBidModifierService': {
+	'CampaignGroupService': {
 		'xmlns': 'https://adwords.google.com/api/adwords/cm/{{version}}',
 		'wsdl': 'https://adwords.google.com/api/adwords/cm/{{version}}/CampaignGroupService?wsdl',
 		'methods': [
