@@ -48,7 +48,7 @@ class AdwordsReportBuilder {
      * @param fields {array}
      */
     buildFields(selector, fields) {
-        for (var index in fields) {
+        for (var index = 0; index < fields.length; index++) {
             selector.ele('fields', {}, fields[index]);
         }
     }
@@ -74,7 +74,7 @@ class AdwordsReportBuilder {
      * @param filters {array} an array of filters
      */
     buildFilters(selector, filters) {
-        for (var index in filters) {
+        for (var index=0 ; index < filters.length; index++) {
             var filter = filters[index];
             var element = selector.ele('predicates');
             element.ele('field', {}, filter.field);
@@ -82,7 +82,7 @@ class AdwordsReportBuilder {
             if (!(filter.values instanceof Array)) {
                 filter.values = [filter.values]
             }
-            for (var r in filter.values) {
+            for (var r=0; r<filter.values.length;r++) {
                 element.ele('values', {}, filter.values[r]);
             }
         }
