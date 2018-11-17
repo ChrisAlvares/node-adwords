@@ -207,6 +207,4 @@ describe('ReportService', function() {
             }, done);
         });
     });
-
-
 });
