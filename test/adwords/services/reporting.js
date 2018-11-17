@@ -14,8 +14,7 @@ const MockReq = require('mock-req');
 const MockRes = require('mock-res');
 
 describe('ReportService', function() {
-    // let config = require('./adwordsuser-config');
-    let config;
+    let config = require('./adwordsuser-config');
 
     describe('streamReport', function() {
         let post;
