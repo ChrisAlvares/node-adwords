@@ -106,7 +106,7 @@ class AdwordsReport {
             let request = https.request(params, (response) => {
                 const { statusCode } = response;
 
-                return statusCode == 200 ? callback(response, true) : callback('Connection failed: ' + response.statusCode);
+                return statusCode == 200 ? callback(response, true) : callback(`Connection failed: ${response.statusCode} message: ${response.statusMessge}`);
             });
 
             request.write(postData);
