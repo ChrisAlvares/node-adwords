@@ -17,7 +17,6 @@ class AdwordsService {
      * @inheritDoc
      */
     constructor(credentials, serviceDescriptor, attributesKey = 'attributes') {
-    // constructor(credentials, serviceDescriptor) {
         this.credentials = credentials;
         this.auth = new AdwordsAuth(credentials);
         this.serviceDescriptor = serviceDescriptor;
@@ -48,7 +47,6 @@ class AdwordsService {
     callServiceMethod(method) {
         return _.bind(function() {
             var payload =  AdwordsRequestParser.convertToValidAdwordsRequest(arguments[0] || [], this.attributesKey);
-            // var payload =  AdwordsRequestParser.convertToValidAdwordsRequest(arguments[0] || []);
             var callback = arguments[1] || function() {}
             this.callService(method, payload, callback, true);
         }, this);
@@ -105,21 +103,14 @@ class AdwordsService {
      * @access protected
      * @param callback {function} returns a function with error, soapclient and meta data
      */
-    // getClient(wsdlOptions, callback) {
     getClient(callback) {
         if (this.client && this.clientDetails) {
             return callback(null, this.client, this.clientDetails);
         }
 
-        // if (typeof wsdlOptions === 'function' && typeof callback !== 'function') {
-        //     callback = wsdlOptions;
-        //     wsdlOptions = {};
-        // }
-
         const wsdlOptions = this.attributesKey === 'attributes' ? {} : { attributesKey: this.attributesKey };
 
         soap.createClient(this.serviceDescriptor.wsdl, wsdlOptions, (error, client) => {
-        // soap.createClient(this.serviceDescriptor.wsdl, (error, client) => {
             if (error) {
                 return callback(error);
             }
