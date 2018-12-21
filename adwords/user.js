@@ -66,11 +66,11 @@ class AdwordsUser {
      */
     populateServiceDescriptor(serviceDescriptor, adwordsVersion) {
         var finalServiceDescriptor = _.clone(serviceDescriptor);
-        for (var index in finalServiceDescriptor) {
-            if ('string' === typeof finalServiceDescriptor[index]) {
-                finalServiceDescriptor[index] = finalServiceDescriptor[index].replace(/\{\{version\}\}/g, adwordsVersion);
+        _.each(finalServiceDescriptor, (value, index) => {
+            if ('string' === typeof value) {
+                finalServiceDescriptor[index] = value.replace(/\{\{version\}\}/g, adwordsVersion);
             }
-        }
+        })
         return finalServiceDescriptor;
     }
 

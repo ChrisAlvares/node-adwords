@@ -76,7 +76,12 @@ describe('AdgroupCriterionService', function() {
 
             let adgroupCriterionDeleteOperation = {
                 operator: 'REMOVE',
-                operand: keyword.value[0]
+                operand: {
+                    adGroupId: keyword.value[0].adGroupId,
+                    criterion: {
+                        id: keyword.value[0].criterion.id
+                    }
+                }
             };
             adgroupCriterionService.mutate({operations: [adgroupCriterionDeleteOperation]}, done);
         })

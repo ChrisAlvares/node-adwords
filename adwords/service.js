@@ -32,10 +32,9 @@ class AdwordsService {
      * @param methods {array} an array of string method names
      */
     registerServiceDescriptorMethods(methods) {
-        for (var index in methods) {
-            var method = methods[index];
+        _.each(methods, (method) => {
             this[method] = this.callServiceMethod(method);
-        }
+        });
     }
 
     /**

@@ -30,7 +30,7 @@ module.exports = {
      * Gives a default adwords version
      * @var string
      */
-    DEFAULT_ADWORDS_VERSION: 'v201806',
+    DEFAULT_ADWORDS_VERSION: 'v201809',
 
     /**
      * The Date Range Enumerations
