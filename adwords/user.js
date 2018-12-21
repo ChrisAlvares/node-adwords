@@ -34,8 +34,12 @@ class AdwordsUser {
      * @param adwordsversion {string} the adwords version, defaults to 201609
      * @return {AdwordsService} An adwords service object to call methods from
      */
-    getService(service, adwordsVersion) {
+    getService(service, adwordsVersion, attributesKey = 'attributes') {
+    // getService(service, adwordsVersion) {
         adwordsVersion = adwordsVersion || AdwordsConstants.DEFAULT_ADWORDS_VERSION;
+        if (service === 'FeedService') {
+        attributesKey = 'attributesKey'
+        }
         var serviceDescriptor = AdwordsServiceDescriptors[service];
         if (!serviceDescriptor) {
             throw new Error(
@@ -43,9 +47,11 @@ class AdwordsUser {
             );
         }
 
+
         var service = new AdwordsService(
             this.credentials,
-            this.populateServiceDescriptor(serviceDescriptor, adwordsVersion)
+            this.populateServiceDescriptor(serviceDescriptor, adwordsVersion),
+            attributesKey
         );
 
         return service;

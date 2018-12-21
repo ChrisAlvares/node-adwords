@@ -16,10 +16,11 @@ class AdwordsService {
     /**
      * @inheritDoc
      */
-    constructor(credentials, serviceDescriptor) {
+    constructor(credentials, serviceDescriptor, attributesKey = 'attributes') {
         this.credentials = credentials;
         this.auth = new AdwordsAuth(credentials);
         this.serviceDescriptor = serviceDescriptor;
+        this.attributesKey = attributesKey;
         this.registerServiceDescriptorMethods(this.serviceDescriptor.methods);
     }
 
@@ -44,7 +45,7 @@ class AdwordsService {
      */
     callServiceMethod(method) {
         return _.bind(function() {
-            var payload =  AdwordsRequestParser.convertToValidAdwordsRequest(arguments[0] || []);
+            var payload =  AdwordsRequestParser.convertToValidAdwordsRequest(arguments[0] || [], this.attributesKey);
             var callback = arguments[1] || function() {}
             this.callService(method, payload, callback, true);
         }, this);
@@ -72,15 +73,19 @@ class AdwordsService {
                 new soap.BearerSecurity(this.credentials.access_token)
             );
 
+            try {
             this.client[method](payload, this.parseResponse((error, response) => {
                 if (error
                     && shouldRetry
                     && -1 !== error.toString().indexOf(AdwordsConstants.OAUTH_ERROR)) {
                         this.credentials.access_token = null;
                         return this.callService(method, payload, callback, false);
-                }
-                callback(error, response);
-            }));
+                    }
+                    callback(error, response);
+                }));
+            } catch (error) {
+                callback(error);
+            }
         });
     }
 
@@ -106,7 +111,9 @@ class AdwordsService {
             return callback(null, this.client, this.clientDetails);
         }
 
-        soap.createClient(this.serviceDescriptor.wsdl, (error, client) => {
+        const wsdlOptions = this.attributesKey === 'attributes' ? {} : { attributesKey: this.attributesKey };
+
+        soap.createClient(this.serviceDescriptor.wsdl, wsdlOptions, (error, client) => {
             if (error) {
                 return callback(error);
             }

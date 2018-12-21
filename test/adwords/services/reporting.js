@@ -70,8 +70,6 @@ describe('ReportService', function() {
             }, done);
         });
 
-
-
         it('should return an invalid report for a bad access token', function(done) {
             let newConfig = _.clone(config);
             newConfig.refresh_token = null;
@@ -94,8 +92,6 @@ describe('ReportService', function() {
                 done(new Error('Should have errored with bad access token'));
             });
         });
-
-
     });
 
     describe('when defined via AWQL', function(){
