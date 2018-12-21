@@ -73,15 +73,19 @@ class AdwordsService {
                 new soap.BearerSecurity(this.credentials.access_token)
             );
 
+            try {
             this.client[method](payload, this.parseResponse((error, response) => {
                 if (error
                     && shouldRetry
                     && -1 !== error.toString().indexOf(AdwordsConstants.OAUTH_ERROR)) {
                         this.credentials.access_token = null;
                         return this.callService(method, payload, callback, false);
-                }
-                callback(error, response);
-            }));
+                    }
+                    callback(error, response);
+                }));
+            } catch (error) {
+                callback(error);
+            }
         });
     }
 
