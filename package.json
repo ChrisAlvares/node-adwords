@@ -1,5 +1,5 @@
 {
-  "name": "node-adwords",
+  "name": "@freshfruitdigital/node-adwords",
   "version": "201806.0.1",
   "description": "An unofficial - feature complete - Adwords sdk for NodeJS",
   "main": "index.js",
