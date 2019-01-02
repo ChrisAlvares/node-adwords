@@ -1,5 +1,18 @@
 # Changelog
 
+201809.0.1 / 2018-09-25
+=======================
+
+* Added support for api version 201809
+* Fixed a bug with CampaignGroupService not being in the [service key](https://github.com/ChrisAlvares/node-adwords/pull/83/files)
+* Updated for loops to be forEach so array modifiers do not affect the code
+
+
+201806.0.2 / 2018-09-21
+=======================
+
+* Removed dependency for entire googleapi package using google-auth-library instead
+
 201806.0.1 / 2018-06-07
 =======================
 
