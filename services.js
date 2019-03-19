@@ -281,7 +281,9 @@ module.exports = {
 		'wsdl': 'https://adwords.google.com/api/adwords/mcm/{{version}}/CustomerService?wsdl',
 		'methods': [
 			'getCustomers',
-			'mutate'
+			'getServiceLinks',
+			'mutate',
+			'mutateServiceLinks'
 		]
 	},
 	'CustomerSyncService': {
