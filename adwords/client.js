@@ -8,28 +8,21 @@ const _ = require('lodash');
 const AdwordsServiceDescriptors = require('../services');
 const AdwordsService = require('./service');
 const AdwordsConstants = require('./constants');
-const AdwordsAuth = require('./auth');
 
-class AdwordsUser {
+class AdwordsClient {
 
     /**
      * @inheritDoc
      */
-    constructor(obj) {
+    constructor(oAuth2Client, obj) {
         this.credentials = _.extend({
             developerToken: '',
             userAgent: 'node-adwords',
             clientCustomerId: '',
-            client_id: '',
-            client_secret: '',
-            refresh_token: '',//@todo implement refesh token instead of access token
-            access_token: '',
         }, obj);
 
-        const auth = new AdwordsAuth( this.credentials );
-        this.oAuth2Client = auth.oAuth2Client;
+        this.oAuth2Client = oAuth2Client;
     }
-
 
     /**
      * Returns an Api Service Endpoint
@@ -65,14 +58,14 @@ class AdwordsUser {
      */
     populateServiceDescriptor(serviceDescriptor, adwordsVersion) {
         var finalServiceDescriptor = _.clone(serviceDescriptor);
-        _.each(finalServiceDescriptor, (value, index) => {
-            if ('string' === typeof value) {
-                finalServiceDescriptor[index] = value.replace(/\{\{version\}\}/g, adwordsVersion);
+        for (var index in finalServiceDescriptor) {
+            if ('string' === typeof finalServiceDescriptor[index]) {
+                finalServiceDescriptor[index] = finalServiceDescriptor[index].replace(/\{\{version\}\}/g, adwordsVersion);
             }
-        })
+        }
         return finalServiceDescriptor;
     }
 
 }
 
-module.exports = AdwordsUser;
+module.exports = AdwordsClient;

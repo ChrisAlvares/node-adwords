@@ -16,9 +16,9 @@ class AdwordsService {
     /**
      * @inheritDoc
      */
-    constructor(credentials, serviceDescriptor) {
+    constructor(oAuthClient, credentials, serviceDescriptor) {
         this.credentials = credentials;
-        this.auth = new AdwordsAuth(credentials);
+        this.oauth2Client = oAuthClient;
         this.serviceDescriptor = serviceDescriptor;
         this.registerServiceDescriptorMethods(this.serviceDescriptor.methods);
     }
@@ -69,14 +69,13 @@ class AdwordsService {
             }
 
             this.client.setSecurity(
-                new soap.BearerSecurity(this.credentials.access_token)
+                new soap.BearerSecurity(this.oauth2Client.credentials.access_token)
             );
-
             this.client[method](payload, this.parseResponse((error, response) => {
                 if (error
                     && shouldRetry
                     && -1 !== error.toString().indexOf(AdwordsConstants.OAUTH_ERROR)) {
-                        this.credentials.access_token = null;
+                        this.oauth2Client.this.oauth2Client.credentials.access_token = null;
                         return this.callService(method, payload, callback, false);
                 }
                 callback(error, response);
@@ -153,16 +152,16 @@ class AdwordsService {
      * @param callback {function}
      */
     getAccessToken(callback) {
-        if (this.credentials.access_token) {
-            return callback(null, this.credentials.access_token);
+        if (this.oauth2Client.credentials.access_token) {
+            return callback(null, this.oauth2Client.credentials.access_token);
         }
 
-        this.auth.refreshAccessToken(this.credentials.refresh_token, (error, tokens) => {
+        this.oauth2Client.refreshAccessToken(this.oauth2Client.credentials.refresh_token, (error, tokens) => {
             if (error) {
                 return callback(error);
             }
-            this.credentials.access_token = tokens.access_token;
-            callback(null, this.credentials.access_token);
+            this.oauth2Client.credentials.access_token = tokens.access_token;
+            callback(null, this.oauth2Client.credentials.access_token);
         });
     }
 

@@ -154,6 +154,84 @@ app.get('/adwords/auth', (req, res) => {
 
 ```
 
+
+## Service account Authentication
+How does it work?
+
+When using Google APIs from the server (or any non-browser based application), authentication is performed through a Service Account, which is a special account representing your application. This account has a unique email address that can be used to grant permissions to. If a user wants to give access to his Google Drive to your application, he must share the files or folders with the Service Account using the supplied email address.
+
+Now that the Service Account has permission to some user resources, the application can query the API with OAuth2. When using OAuth2, authentication is performed using a token that has been obtained first by submitting a JSON Web Token (JWT). The JWT identifies the user as well as the scope of the data he wants access to. The JWT is also signed with a cryptographic key to prevent tampering. Google generates the key and keeps only the public key for validation. You must keep the private key secure with your application so that you can sign the JWT in order to guarantee its authenticity.
+
+The application requests a token that can be used for authentication in exchange with a valid JWT. The resulting token can then be used for multiple API calls, until it expires and a new token must be obtained by submitting another JWT.
+
+Creating a Service Account using the Google Developers Console
+
+From the Google Developers Console, select your project or create a new one.
+
+Under "APIs & auth", click "Credentials".
+
+Under "OAuth", click the "Create new client ID" button.
+
+Select "Service account" as the application type and click "Create Client ID".
+
+The key for your new service account should prompt for download automatically. Note that your key is protected with a password. IMPORTANT: keep a secure copy of the key, as Google keeps only the public key.
+
+Convert the downloaded key to PEM, so we can use it from the Node crypto module.
+
+To do this, run the following in Terminal:
+
+`openssl pkcs12 -in downloaded-key-file.p12 -out your-key-file.pem -nodes`
+
+You will be asked for the password you received during step 5.  
+hint: notasecret
+
+That's it! You now have a service account with an email address and a key that you can use from your Node application.
+
+```js
+const AdwordsClient = require('node-adwords').AdwordsClient;
+const AdwordsConstants = require('node-adwords').AdwordsConstants;
+const googleapis = require('googleapis');
+
+const SERVICE_ACCOUNT_KEY_FILE = 'INSERT_PATH_TO_KEYFILE.pem';
+
+const jwtClient = new googleapis.auth.JWT(
+    // use the email address of the service account, as seen in the API console
+    'my-service-account@developer.gserviceaccount.com',
+    // use the PEM file we generated from the downloaded key
+    SERVICE_ACCOUNT_KEY_FILE,
+    null,
+    // specify the scopes you wish to access
+    ['https://www.googleapis.com/auth/adwords'],
+    // sub email
+    'user-email'
+)
+
+jwtClient.authorize((err) => {
+    if(err) throw err;
+
+    const client = new AdwordsClient(jwtClient, {
+        developerToken: 'INSERT_DEVELOPER_TOKEN_HERE', //your adwords developerToken
+        userAgent: 'INSERT_COMPANY_NAME_HERE', //any company name
+        clientCustomerId: 'INSERT_CLIENT_CUSTOMER_ID_HERE', //the Adwords Account id (e.g. 123-123-123)
+        client_id: 'INSERT_OAUTH2_CLIENT_ID_HERE', //this is the api console client_id     
+    })
+
+   const campaignService = client.getService('CampaignService')
+
+    //create selector
+    let selector = {
+        fields: ['Id', 'Name'],
+        ordering: [{field: 'Name', sortOrder: 'ASCENDING'}],
+        paging: {startIndex: 0, numberResults: AdwordsConstants.RECOMMENDED_PAGE_SIZE}
+    }
+
+    campaignService.get({serviceSelector: selector}, (error, result) => {
+        console.log(error, result);
+    })
+})
+
+```
+
 # Troubleshooting
 
 ## Adwords.Types

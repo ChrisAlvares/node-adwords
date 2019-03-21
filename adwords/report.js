@@ -16,9 +16,9 @@ class AdwordsReport {
     /**
      * @inheritDoc
      */
-    constructor(credentials) {
-        this.auth = new AdwordsAuth(credentials);
+    constructor(oAuthClient) {
         this.credentials = credentials;
+        this.oauth2Client = oAuthClient;
     }
 
     /**
@@ -52,7 +52,7 @@ class AdwordsReport {
                 if (error || this.reportBodyContainsError(report, body)) {
                     error = error || body;
                     if (-1 !== error.toString().indexOf(AdwordsConstants.OAUTH_ERROR) && retryRequest) {
-                        this.credentials.access_token = null;
+                        this.oauth2Client.credentials.access_token = null;
                         return this.getReport(apiVersion, report, callback, false);
                     }
                     return callback(error, null);
@@ -103,16 +103,16 @@ class AdwordsReport {
      * @param callback {function}
      */
     getAccessToken(callback) {
-        if (this.credentials.access_token) {
-            return callback(null, this.credentials.access_token);
+        if (this.oauth2Client.credentials.access_token) {
+            return callback(null, this.oauth2Client.credentials.access_token);
         }
 
-        this.auth.refreshAccessToken(this.credentials.refresh_token, (error, tokens) => {
+        this.oauth2Client.refreshAccessToken(this.oauth2Client.credentials.refresh_token, (error, tokens) => {
             if (error) {
                 return callback(error);
             }
-            this.credentials.access_token = tokens.access_token;
-            callback(null, this.credentials.access_token);
+            this.oauth2Client.credentials.access_token = tokens.access_token;
+            callback(null, this.oauth2Client.credentials.access_token);
         });
     }
 
