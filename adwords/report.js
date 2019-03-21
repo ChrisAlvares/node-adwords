@@ -6,10 +6,11 @@
 
 const request = require('request');
 const util = require('util');
-const fs = require('fs');
 const AdwordsConstants = require('./constants');
 const AdwordsReportBuilder = require('./report-builder');
 const AdwordsAuth = require('./auth');
+const https = require('https');
+const querystring = require('querystring');
 
 class AdwordsReport {
 
@@ -43,12 +44,9 @@ class AdwordsReport {
                 return callback(error);
             }
 
-            request({
-                uri: 'https://adwords.google.com/api/adwords/reportdownload/' + apiVersion,
-                method: 'POST',
-                headers: headers,
-                form: this.buildReportBody(report)
-            }, (error, response, body) => {
+            let params = this.buildParams(apiVersion, headers, report);
+
+            request(params, (error, response, body) => {
                 if (error || this.reportBodyContainsError(report, body)) {
                     error = error || body;
                     if (-1 !== error.toString().indexOf(AdwordsConstants.OAUTH_ERROR) && retryRequest) {
@@ -59,6 +57,58 @@ class AdwordsReport {
                 }
                 return callback(null, body);
             });
+        });
+    }
+
+    /**
+     * Builds parameters.
+     *
+     * @param      {string}  apiVersion  The api version
+     * @param      {Object}  headers     The headers
+     * @param      {Object}  report      The report
+     * @return     {Object}  The parameters.
+     */
+    buildParams(apiVersion, headers, report) {
+        return {
+            uri: 'https://adwords.google.com/api/adwords/reportdownload/' + apiVersion,
+            hostname: 'adwords.google.com',
+            port: 443,
+            path: '/api/adwords/reportdownload/' + apiVersion,
+            method: 'POST',
+            headers: headers,
+            form: this.buildReportBody(report)
+        };
+    }
+
+    /**
+     * Streams a report.
+     *
+     * @param      {string}   apiVersion  The api version
+     * @param      {Object}   report      The report
+     * @param      {Function} callback    The callback
+     * @return     {boolean}  { description_of_the_return_value }
+     *
+     * @throws     {Object} { If there is an error in the call }
+     */
+    streamReport(apiVersion, report, callback) {
+        report = report || {};
+        apiVersion = apiVersion || AdwordsConstants.DEFAULT_ADWORDS_VERSION;
+
+        this.getHeaders(report.additionalHeaders, (error, headers) => {
+            if (error) { return callback(error); }
+
+            let params = this.buildParams(apiVersion, headers, report);
+
+            let postData = querystring.stringify(params.form);
+            headers['Content-Type'] = 'application/x-www-form-urlencoded';
+            headers['Content-Length'] = postData.length;
+
+            let request = https.request(params, (response) => {
+                callback(response);
+            });
+
+            request.write(postData);
+            request.end();
         });
     }
 
