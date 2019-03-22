@@ -23,13 +23,13 @@
   "dependencies": {
     "async": "^2.6.0",
     "google-auth-library": "^1.6.1",
-    "lodash": "^4.17.5",
-    "moment": "^2.22.1",
-    "request": "^2.87.0",
-    "soap": "^0.24.0",
-    "xmlbuilder": "^10.0.0"
+    "lodash": "^4.17.11",
+    "moment": "^2.24.0",
+    "request": "^2.88.0",
+    "soap": "^0.26.0",
+    "xmlbuilder": "^11.0.0"
   },
   "devDependencies": {
-    "mocha": "^5.2.0"
+    "mocha": "^6.0.2"
   }
 }
