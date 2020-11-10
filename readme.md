@@ -111,7 +111,7 @@ let params = {
     query: 'SELECT Id, Name WHERE Status = "ENABLED" ORDER BY Name DESC LIMIT 0,50'
 };
 
-campaignService.get(params, (error, result) => {
+campaignService.query(params, (error, result) => {
     console.log(error, result);
 })
 ```
