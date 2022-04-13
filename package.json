@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/ChrisAlvares/node-adwords#readme",
   "dependencies": {
-    "async": "^2.6.3",
+    "async": "^3.2.2",
     "google-auth-library": "^7.10.2",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
